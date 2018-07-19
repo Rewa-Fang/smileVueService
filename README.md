@@ -3,7 +3,7 @@ smileVueService  服务端项目
 
 ### 1. 使用Mongooes 数据建模库 连接MongoBD数据库
 
-    npm install mongooes --save
+    npm install mongoose --save
 
 编写初始化文件 init.js
 
