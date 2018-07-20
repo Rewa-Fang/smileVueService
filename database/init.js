@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 const db = "mongodb://localhost/smile_db";
+const glob = require('glob');
+const {resolve} = require('path');
+
+exports.initSchemas = ()=>{
+  glob.sync(resolve(__dirname,'./schema/','**/*.js')).forEach(require);
+}
 
 exports.connect = ()=>{
   mongoose.connect(db);
