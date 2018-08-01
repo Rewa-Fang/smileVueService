@@ -6,6 +6,7 @@ const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser'); // bodyparser中间件便于接收post请求
 const cors = require('koa2-cors'); //koa2-cors 中间件 可允许跨域访问
 let userRouter = require('./appApi/User.js');
+let goodsRouter = require('./appApi/goods.js');
 let _router = new Router();
 
 app.use(bodyParser())  //便于接收POST数据
@@ -13,6 +14,7 @@ app.use(cors()) //允许跨域
 
 //装载子路由 和 加载路由中间件  
 _router.use('/user',userRouter.routes())
+_router.use('/goods',goodsRouter.routes())
 app.use(_router.routes())
 app.use(_router.allowedMethods())
 //立即执行
