@@ -95,12 +95,14 @@ router.post('/getCategorySubList',async(ctx)=>{
     }
 });
 // 根据子类别id 获取商品列表
-router.get('/getGoodsListByCategorySubID',async(ctx)=>{
+router.post('/getGoodsListByCategorySubID',async(ctx)=>{
     try {
         const Goods = mongoose.model('Goods');
-        // let categorySubID = ctx.request.body.categorySubID;
-        let categorySubID = '402880e86016d1b5016016e549710020';
-        let result = await Goods.find({SUB_ID:categorySubID}).exec();
+        let categorySubID = ctx.request.body.categorySubID;
+        let page = ctx.request.body.page;
+        let num = 10;
+        let start = (page-1) * num;
+        let result = await Goods.find({SUB_ID:categorySubID}).skip(start).limit(num).exec();
         ctx.body = {code:200,message:result};
     } catch (error) {
         ctx.body = {code:500,message:error};
