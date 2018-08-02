@@ -34,6 +34,7 @@ userRouter.post('/login',async(ctx)=>{
   await User.findOne({userName:userName}).exec().then(async(result)=>{
     if(result){
       let newUser = new User();
+      // 比对密码
       await newUser.comparePassword(password,result.password)
       .then((isMatch)=>{
         ctx.body = {code:200,message:isMatch}

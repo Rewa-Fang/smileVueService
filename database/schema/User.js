@@ -13,7 +13,7 @@ const userSchema = new Schema({
   lastLoginAt:{type:Date,default:Date.now()}
 });
 
-//每次存储数据时都要执行
+//每次存储数据时都要执行  给密码加密加盐
 userSchema.pre("save",function(next){
   bcrypt.genSalt(SALT_WORK_FACTOR,(err,salt)=>{ //加盐
     if(err) return next(err);
